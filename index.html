@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap');
+        *{
+            font-family: 'Dosis', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        nav{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team_name{
+            font-size: 5rem;
+            margin: 3rem;
+            text-align: center;
+        }
+        
+        .nav_links{
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0 0.5rem;
+            border: 1px solid rgb(225, 222, 222);
+        }
+        
+        .nav_links .link{
+            border-radius: 2rem;
+            padding: 0.8rem;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            color: gray;
+        }
+
+        .selected_link{
+            background-color:lightgreen;
+            color: black;
+        }
+        
+        .nav_links p{
+            text-decoration: none;
+            padding: 0 0.2rem;
+            transition: all 0.5s ease-in-out;
+            font-weight:600;
+        }
+
+        .nav_links .link:hover{
+            background-color:lightgreen;
+        }
+        
+        .nav_links .link:hover p{
+            color: black;
+        }
+
+        .home_wrapper{
+            margin: 2rem 6rem;
+            display: grid;
+            grid-template-areas: "member_info member_info member_info"
+            "member member member";
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .project_wrapper{
+            padding: 1.5rem;
+            margin: 2rem 6rem;
+            display: none;
+        }
+        
+        .about_wrapper{
+            padding: 1.5rem;
+            margin: 2rem 6rem;  
+            display: none;  
+        }
+
+        .research_wrapper{
+            padding: 1.5rem;
+            margin: 2rem 6rem;  
+            display: none;  
+        }
+
+        .upcomming_wrapper{
+            padding: 1.5rem;
+            margin: 2rem 6rem;  
+            display: none;  
+        }
+
+        .home_wrapper .member_info{
+            grid-area: member_info;
+        }
+
+        .home_wrapper .member{
+            border-radius: 1rem;
+            border: 1px solid rgb(225, 222, 222);
+            margin: 0 auto;
+            padding: 0.8rem;
+            box-shadow: none;
+            transition: all 0.5s ease-in-out;
+            cursor: pointer;
+            /* margin: 1rem; */
+            display: flex;
+            gap: 2rem;
+        }
+
+        .home_wrapper .member:hover{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        }
+
+        .member .avatar{
+            height: 200px;
+            width: 300px;
+        }
+
+        .member .avatar img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .member .name{
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            grid-area: member;
+        }
+
+        .member .college_name{
+            text-align: center;
+            color: gray;
+            /* font-size: 0.9rem; */
+            margin-top: 0.3rem;
+        }
+
+        .member .social{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 2rem;
+        }
+
+        .member .social i{
+            font-size: 1.5rem;
+            color: gray;
+            cursor: pointer;
+            transition: all 0.5s ease ease-in;
+        }
+
+        .member .social i:hover{
+            color: black;
+        }
+
+        .member_bio{
+            display: none;
+            margin: 2rem 1rem;
+            align-items: flex-end;
+        }
+
+        .member_bio_info{
+            display: flex;
+        }
+
+        .member_bio p{
+            font-size: 1.1rem;
+            line-height: 2rem;
+        }
+
+        .project{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .problem_description h2, .problem_for h2{
+            margin-bottom: 1rem;
+        }
+
+        .solutions{
+            display: flex;
+            gap: 2rem;
+            flex-direction: column;
+        }
+        
+        .existing_solutions, .proposed_solutions{
+            display: flex;
+            gap: 2rem;
+            flex-direction: column;    
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="team_name">SITCODES</h1>
+    <nav>
+        <div class="nav_links">
+            <div class="link" id="home">
+                <p>Home</p>
+            </div>
+            <div class="link" id="project">
+                <p>Our Project</p>
+            </div>
+            <div class="link" id="about">
+                <p>About</p>
+            </div>
+            <div class="link" id="research">
+                <p>Research</p>
+            </div>
+            <div class="link" id="upcomming">
+                <p>Upcomming</p>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="home_wrapper">
+
+            <div class="member_info"></div>
+            
+            <div class="member" id="member1">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/3d-illustration-human-avatar-profile/9440461.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Anil Rana</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+            <div class="member" id="member2">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/3d-illustration-human-avatar-profile/9440461.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Prasan Chudhary</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+            <div class="member" id="member3">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/3d-illustration-human-avatar-profile/9440461.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Dipanshu Kumar Garg</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+            <div class="member" id="member4">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/9442242.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Anuska</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+            <div class="member" id="member5">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/9442242.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Ritika</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+            <div class="member" id="member6">
+                <div class="member_card">
+                    <div class="avatar">
+                        <img src="../img/img/3d-illustration-human-avatar-profile/9440461.jpg" alt="">
+                    </div>
+                    <div class="desc">
+                        <p class="name">Aashish</p>
+                        <p class="college_name">
+                            Shankara Institute of Technology
+                        </p>
+                        <div class="social">
+                            <a href="">
+                                <a href="">
+                                    <i class="bi bi-envelope-at-fill"></i>
+                                </a>
+                                <i class="bi bi-github"></i>
+                            </a>
+                            <a href="">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member_bio">
+                    <p>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo doloremque laborum veritatis laudantium, earum et natus odio dolorem ipsam necessitatibus esse quasi, vitae unde architecto voluptatum obcaecati, soluta neque at ipsum praesentium. Iure optio consequatur culpa qui cumque. Doloremque nulla ut molestiae, dicta blanditiis perspiciatis quas nisi. Consequuntur esse reprehenderit, quam earum, repudiandae ipsum incidunt est, reiciendis magni velit iusto. Delectus, quae laborum nostrum unde officia ducimus eius dolorem eligendi aliquid commodi explicabo labore, assumenda, placeat molestiae earum omnis ex dicta dolore! Ut architecto quam nihil omnis impedit doloremque, sed atque nobis iste, minima nisi pariatur itaque? Quaerat, inventore aliquam illo eius sit ratione vero voluptatum amet quisquam excepturi totam. Autem qui animi facilis blanditiis optio sapiente veritatis. Est, consectetur!
+                    </p>
+                </div>
+            </div>
+         </div>
+
+         <div class="project_wrapper">
+            <div class="project">
+                <h1 class="problem_statement">
+                    <b>Education Technology:</b> Develop tools or platforms to enhance learning experiences, provide personalized education, or improve access to education for all.
+                </h1>
+                <div class="problem_description">
+                    <h2 class="problem_desc">
+                        Problem Description
+                    </h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, ipsa! Veniam sit, adipisci quisquam incidunt dolorum similique temporibus dicta facilis facere, repellendus nesciunt officiis voluptates nulla dignissimos, aliquid excepturi doloremque modi! Sapiente dolorem tenetur iusto, quia beatae aspernatur, fuga veniam recusandae nemo excepturi asperiores culpa cumque commodi doloremque amet doloribus facilis vero? Cum ad, earum consequuntur modi totam numquam odio amet, non, pariatur tenetur magnam. Libero, tenetur ipsa dolor, eos fugiat itaque nisi voluptatem natus cupiditate voluptatibus sunt sit, recusandae optio vero quo quis? Pariatur quos harum quibusdam exercitationem natus repudiandae accusantium delectus, eveniet atque quae cupiditate omnis illum alias, facere aliquam? Aut commodi praesentium, odio neque delectus voluptatem, illum adipisci ab nostrum sequi voluptas alias molestiae, quasi laboriosam hic.</p>
+                </div>
+
+                <div class="problem_for">
+                    <h2>Affected Field</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, alias reiciendis? Corporis quos omnis laudantium ipsa sunt ex! Voluptate veritatis repudiandae deserunt iure aperiam. Deleniti molestias neque facilis commodi atque pariatur rerum non impedit expedita autem qui voluptates blanditiis deserunt at tempore quis ipsam rem repellat consectetur, ut eum nostrum ullam porro maxime. Obcaecati esse, id dolor aspernatur quisquam veniam, reprehenderit explicabo vero nulla aliquid, eaque qui. Doloremque, dolorum. Laboriosam, iure porro. Cum qui vel odio consequuntur nesciunt quisquam, praesentium, reiciendis quaerat totam eos magni! Animi voluptatem voluptates est nostrum quae aliquam, asperiores explicabo commodi natus ipsa nulla modi dolorem nam consequuntur libero, vitae accusamus itaque aliquid repudiandae, qui magnam? Officiis, ex? Placeat sed nesciunt excepturi ullam aut eos ipsum!</p>
+                </div>
+
+                <div class="solutions">
+                    <h2>
+                        Solutions
+                    </h2>
+
+                    <div class="existing_solutions">
+                        <h3>Existing Solutions</h3>
+                        <div class="methods">
+                            <h3>Methods</h3>
+                        </div>
+                        
+                        <div class="obstacles">
+                            <h3>Obstacles</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="proposed_solutions">
+                        <h3>Proposed Solutions</h3>
+                        <div class="methods">
+                            <h3>Methods</h3>
+                        </div>
+                        
+                        <div class="obstacles">
+                            <h3>Obstacles</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+         <div class="about_wrapper">
+            <div class="thumbnail">
+                <img src="../img/Asset 1.svg" alt="">
+            </div>
+            <h1>About Us</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit unde, nam, doloremque nemo accusamus blanditiis cupiditate pariatur adipisci eligendi consequuntur rerum vel. Ipsam tenetur necessitatibus adipisci nam ex quisquam. Voluptatibus quam sequi rerum expedita perspiciatis numquam dicta perferendis? Commodi magni id similique, est distinctio quibusdam, quas cum soluta asperiores laboriosam quod, iusto perspiciatis reprehenderit nobis necessitatibus maxime laudantium eos? Odit laudantium cumque perspiciatis eveniet officia rem ullam magnam autem excepturi, quo, incidunt deleniti mollitia praesentium cupiditate unde similique. Quasi facere voluptate, at ad enim repellat repellendus sunt earum, debitis quidem eum magnam corrupti laudantium. Quo quas dicta, enim aliquam est ipsa consectetur voluptates illum? Animi, rem eum. Error iure qui mollitia consequatur facilis dolorem nulla! Vero quas quo dolores facere repudiandae delectus, cumque sequi. Ipsa sunt tempora esse odit sequi earum, eius saepe, cum iste sit eos excepturi aliquid consequuntur assumenda voluptates temporibus quae necessitatibus nemo provident. Nesciunt nisi reiciendis eos numquam beatae recusandae? Id ex aliquid enim, rem omnis cum excepturi soluta adipisci sequi! Sed perferendis voluptatum sequi porro quos quod architecto, quisquam perspiciatis esse, saepe modi quas amet.</p>
+         </div>
+
+         <div class="research_wrapper">
+            <h1>Research</h1>
+         </div>
+
+         <div class="upcomming_wrapper">
+            <h1>Upcomming</h1>
+         </div>
+    </main>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script>
+    $('.member').click(function(){
+        // console.log
+        // ((this).id);
+        let memberId = this.id;
+        let member = $(this);
+        let home_wrapper = $('.home_wrapper');
+        let info = $('.member_info');
+        let old_member = $('.member_info .member');
+        old_memberId = old_member.attr('id');
+        console.log(old_memberId);
+
+        $(`#${old_memberId} .member_bio`).removeClass('member_bio_info');
+
+        $(`#${memberId} .member_bio`).addClass('member_bio_info');
+        home_wrapper.append(old_member);
+        info.empty();
+       info.append(member);
+    });
+
+    $('.link').click(function(){
+        $('.link').removeClass('selected_link');
+        $(this).addClass('selected_link');
+        $(this).css('color', 'black');
+        new_section = $(`${this.id}_wrapper`);
+        $('main').children().css('display', 'none');
+        $(`.${this.id}_wrapper`).toggle();
+    })
+</script>
+</html>
