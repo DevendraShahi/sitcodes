@@ -110,6 +110,7 @@
             cursor: pointer;
             /* margin: 1rem; */
             display: flex;
+            align-items: center;
             gap: 2rem;
         }
 
@@ -200,6 +201,46 @@
             flex-direction: column;    
         }
 
+        @media screen and (max-width:786px) {
+            .nav_links{
+                border-radius: 0;
+                display: flex;
+                overflow-x: scroll;
+                margin: 0;
+                padding: 0 1rem;
+            }
+
+            .home_wrapper{
+                margin: 2rem 2rem;
+                display: grid;
+                grid-template-areas: "member_info"
+                "member";
+                align-items: center;
+                justify-content: space-between;
+                gap: 2rem;
+            }
+
+            .home_wrapper .member{
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .project_wrapper, .research_wrapper, .upcomming_wrapper{
+                padding: 0;
+                margin: 2rem 2rem;
+            }
+            
+            .about_wrapper{
+                padding: 0;
+                margin: 0 0rem;
+            }
+
+            .about_wrapper p, .about_wrapper h1{
+                margin: 1rem 2rem;
+            }
+
+        }
+
     </style>
 </head>
 <body>
@@ -210,7 +251,7 @@
                 <p>Home</p>
             </div>
             <div class="link" id="project">
-                <p>Our Project</p>
+                <p>Project</p>
             </div>
             <div class="link" id="about">
                 <p>About</p>
